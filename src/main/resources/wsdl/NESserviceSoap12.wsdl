@@ -1,0 +1,116 @@
+<?xml version="1.0" ?><wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <s:element name="HelloWorld">
+        <s:complexType></s:complexType>
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="HelloWorldResult" type="s:string"></s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="NesDoc">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any></s:any>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="AcceptDocResult" type="s:string"></s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part element="tns:HelloWorldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AcceptDocSoapOut">
+    <wsdl:part element="tns:AcceptDocResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AcceptDocSoapIn">
+    <wsdl:part element="tns:AcceptDoc" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part element="tns:HelloWorld" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="NESserviceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:HelloWorldSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptDoc">
+      <wsdl:input message="tns:AcceptDocSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:AcceptDocSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NESserviceSoap" type="tns:NESserviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptDoc">
+      <soap:operation soapAction="http://tempuri.org/AcceptDoc" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NESserviceSoap12" type="tns:NESserviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"></soap12:binding>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document"></soap12:operation>
+      <wsdl:input>
+        <soap12:body use="literal"></soap12:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"></soap12:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptDoc">
+      <soap12:operation soapAction="http://tempuri.org/AcceptDoc" style="document"></soap12:operation>
+      <wsdl:input>
+        <soap12:body use="literal"></soap12:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"></soap12:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NESservice">
+    <wsdl:port binding="tns:NESserviceSoap12" name="NESserviceSoap12">
+      <soap12:address location="http://brightspark-adam.pnpscada.com/soap/NESserviceSoap12"></soap12:address>
+    </wsdl:port>
+    <wsdl:port binding="tns:NESserviceSoap" name="NESserviceSoap">
+      <soap:address location="http://www.oami.co.za/xmldocs/NESservice.asmx"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
